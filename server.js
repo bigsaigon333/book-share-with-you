@@ -14,6 +14,7 @@ var usersRouter = require("./routes/users");
 var app = express();
 
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -23,6 +24,7 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: false, limit: "10mb" }));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
@@ -58,5 +60,5 @@ app.use(function (err, req, res, next) {
 });
 
 app.listen(process.env.PORT || 3000, () => {
-	console.log(`App listening at PORT:${PORT}`);
+	console.log(`App listening at PORT:${process.env.PORT}`);
 });
