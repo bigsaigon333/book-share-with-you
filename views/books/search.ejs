@@ -1,0 +1,20 @@
+<form action="./search" method="GET" id="form-search">
+	<label for="form_search__input">Search</label>
+	<input type="text" name="title" id="form-search__input" value="<%= title %>" />
+	<button type="reset">취소</button>
+	<button type="submit">검색</button>
+</form>
+
+<% if (books != null ) { %>
+<% books.forEach(book => { %> 
+	<div>
+
+		<h3> <%= book.title.replace(/(<\/b>)|(<b>)/gi, "") %> </h3>
+		<img src="<%= book.image%>" alt="book image" width="82" height="109">
+		<span><%= book.author  %> </span>
+		<span><%= book.publisher  %> </span>
+		<span><%= book.pubdate  %> </span>
+	</div>
+	
+	
+	<% })} %>
