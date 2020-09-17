@@ -1,11 +1,10 @@
 <form action="./search" method="GET" id="form-search">
 	<label for="form_search__input">Search</label>
 	<input type="text" name="title" id="form-search__input" value="<%= title %>" />
-	<button type="reset">취소</button>
-	<button type="submit">검색</button>
+	<input type="submit" value="검색">
 </form>
 
-<% if (books != null ) { %>
+<% if (locals.books != null ) { %>
 <% books.forEach(book => { %> 
 	<div>
 

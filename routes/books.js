@@ -7,56 +7,50 @@ router.get("/", (req, res) => {
 	res.render("books/index", { book: { name: "Hello World" } });
 });
 
-router.get("/search", async (req, res) => {
+router.get("/search", (req, res) => {
 	const { title } = req.query;
+	console.log(`title: ${title}`);
 
-	if (title === undefined) {
-		res.render("books/search", { title: "", books: null });
+	if (title === undefined || title === "") {
+		res.render("books/search", { title: "" });
+		return;
 	}
-	try {
-		const json = await getBookData(title);
 
-		console.log(json.items);
-		res.render("books/search", { title: title || "", books: json.items });
-	} catch (error) {
-		console.error(error);
-	}
+	getBookData(title)
+		.then((res) => {
+			if (res == null) throw new Error(`can't find book data`);
+			else return res.json();
+		})
+		.then((json) => {
+			// console.log(json.items);
+			res.render("books/search", { title: title, books: json.items });
+		})
+		.catch((error) => {
+			console.error(error);
+			res.redirect("/books/search");
+		});
 });
 
-async function getBookData(title) {
-	if (title === undefined || title === null || title === "") return;
-
-	const request = require("request");
+function getBookData(title) {
 	const fetch = require("node-fetch");
 	const url = new URL("https://openapi.naver.com/v1/search/book.json");
-
-	const options = {
-		query: title,
-		start: 1,
-		display: 3,
-	};
-
-	url.search = new URLSearchParams(options).toString();
-
 	const headers = {
 		"X-Naver-Client-ID": process.env.NAVER_CLIENT_ID,
 		"X-Naver-Client-Secret": process.env.NAVER_CLIENT_SECRET,
 	};
+	const options = {
+		query: title,
+		// start: 1,
+		// display: 3,
+	};
+
+	url.search = new URLSearchParams(options).toString();
 
 	// console.log(url);
-
-	try {
-		const response = await fetch(url, {
-			method: "GET",
-			// body: options,
-			headers,
-		});
-		const json = await response.json();
-		console.log(json);
-		return json;
-	} catch (error) {
-		console.error(error);
-	}
+	return fetch(url, {
+		method: "GET",
+		// body: options,    // GET method에서는 body추가X
+		headers,
+	});
 }
-
 module.exports = router;
