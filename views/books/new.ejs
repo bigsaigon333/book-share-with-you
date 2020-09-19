@@ -1,0 +1,17 @@
+
+<h2>책 등록하기</h2>
+<form action="/books/<%= isbn %>" method="POST">
+  <%- include("_book_info", {book}) %> 
+
+
+  <label for="quantity">수량</label>
+  <input type="number" name="quantity" id="quantity" min="1" value="1" required="true">
+  
+  <p>교환 가능 장소</p>
+  <%- include("_region_checkbox") %> 
+
+
+
+
+<input type="submit" value="제출">
+</form>

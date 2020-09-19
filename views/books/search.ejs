@@ -1,18 +1,20 @@
+
+<h2>	등록할 책을 검색하세요
+</h2>
+
 <form action="./search" method="GET" id="form-search">
-	<label for="form_search__input">Search</label>
-	<input type="text" name="title" id="form-search__input" value="<%= title %>" />
+	<input type="search" name="title" id="form-search__input" value="<%= title %>" required="true"/>
 	<input type="submit" value="검색">
 </form>
 
 <% if (locals.books != null ) { %>
 <% books.forEach(book => { %> 
 	<div>
+		<%- include("_book_info", {book}) %> 
 
-		<h3> <%= book.title.replace(/(<\/b>)|(<b>)/gi, "") %> </h3>
-		<img src="<%= book.image%>" alt="book image" width="82" height="109">
-		<span><%= book.author  %> </span>
-		<span><%= book.publisher  %> </span>
-		<span><%= book.pubdate  %> </span>
+	
+		<a href="./new/<%=book.isbn%>">등록하기</a>
+
 	</div>
 	
 	

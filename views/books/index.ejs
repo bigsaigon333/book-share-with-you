@@ -1,3 +1,18 @@
 <form action="/books" method="GET">
-	<input type="text" name="name" id="" value="<%= book.name%>" />
+	<label for="book-search">검색어</label>
+	<input type="text" name="name" id="book-search"  />
+	<input type="submit" value="검색">
 </form>
+
+
+<h2>최근 등록된 책들</h2>
+
+
+
+<% books.forEach(book => { %>
+
+	<%- include("_book_info", {book}) %> 
+
+
+
+<% }) %> 
