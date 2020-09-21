@@ -1,0 +1,19 @@
+.nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.nav-title {
+	font-size: 2.5rem;
+	font-weight: 800;
+}
+.nav > ul {
+	display: flex;
+	list-style: none;
+	align-items: center;
+}
+
+.nav > ul > li {
+	margin: 0 0.5rem;
+}

@@ -1,0 +1,22 @@
+@import "./partials/header.css";
+
+:root {
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+body {
+	padding: 20px 50px;
+	max-width: 1200px;
+	margin: 0 auto 3rem;
+	/* min-height: 70vh; */
+}
+
+a {
+	color: #1c1c21;
+	text-decoration: none;
+	font-weight: 600;
+	font-size: 1.2rem;
+}
+a:hover {
+	color: #717184;
+}

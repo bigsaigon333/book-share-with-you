@@ -33,6 +33,9 @@ router.get("/search", (req, res) => {
 			else return res.json();
 		})
 		.then((json) => {
+			console.log(json.errorCode);
+			if (json.errorCode) throw new Error(json.errorMessage);
+
 			const filteredBooks = json.items.filter((item) => {
 				if (item.isbn === "") return false;
 
