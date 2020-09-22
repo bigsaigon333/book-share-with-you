@@ -2,8 +2,8 @@ const { Strategy: naverStrategy } = require("passport-naver");
 const { Strategy: kakaoStrategy } = require("passport-kakao");
 const { Strategy: localStrategy } = require("passport-local");
 const User = require("./models/User");
-const naverCallbackURL = "http://localhost:3000/auth/naver/callback";
-const kakaoCallbackURL = "http://localhost:3000/auth/kakao/callback";
+const naverCallbackURL = process.env.DOMAIN + "/auth/naver/callback";
+const kakaoCallbackURL = process.env.DOMAIN + "/auth/kakao/callback";
 
 function initialize(passport) {
 	const verifyUser = (accessToken, refreshToken, profile, done) => {
