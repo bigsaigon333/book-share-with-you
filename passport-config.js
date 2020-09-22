@@ -12,7 +12,8 @@ function initialize(passport) {
 		// 	provider: "naver",
 		// 	naver: profile._json,
 		// };
-		console.log("user profile: " + profile);
+		console.log("user profile: ");
+		console.log(profile);
 
 		return done(null, profile);
 		// });
@@ -22,7 +23,7 @@ function initialize(passport) {
 		new naverStrategy(
 			{
 				clientID: process.env.NAVER_CLIENT_ID,
-				ClientSecret: process.env.NAVER_CLIENT_SECRET,
+				clientSecret: process.env.NAVER_CLIENT_SECRET,
 				callbackURL: naverCallbackURL,
 				svcType: 0,
 			},

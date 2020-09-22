@@ -30,6 +30,8 @@ router.get(
 	"/auth/naver/callback",
 	passport.authenticate("naver"),
 	(req, res) => {
+		console.log("req.user: ");
+		console.log(req.user);
 		res.redirect("/");
 	}
 );

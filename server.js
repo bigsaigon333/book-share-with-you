@@ -36,11 +36,6 @@ app.use(logger("dev"));
 app.use(express.urlencoded({ extended: false }));
 // app.use(cookieParser());
 
-// Router
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
-app.use("/books", booksRouter);
-
 // session
 app.use(
 	session({
@@ -54,6 +49,11 @@ app.use(
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Router: It should be always later than other middlewares
+app.use("/", indexRouter);
+app.use("/users", usersRouter);
+app.use("/books", booksRouter);
 
 // connect to DB
 mongoose.connect(process.env.DATABASE_URL, {
