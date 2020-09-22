@@ -1,0 +1,79 @@
+.login-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.social-login-container {
+	display: flex;
+	align-items: center;
+	padding: 10px;
+	width: 300px;
+	height: 40px;
+	margin-bottom: 1rem;
+	justify-content: flex-start;
+	border-radius: 12px;
+	font-size: 1.3rem;
+}
+
+.naver-style {
+	background-color: #1ec800;
+	color: #ffffff;
+	font-family: "Nanum Gothic";
+}
+.naver-style-symbol {
+	font-weight: 800;
+	border-right: solid 1.5px white;
+}
+
+.kakao-style {
+	background-color: #fee500;
+	color: #000000;
+}
+
+.local-style {
+	background-color: var(--color-text-dark);
+	color: whitesmoke;
+}
+
+.social-login__symbol {
+	width: 15%;
+	text-align: center;
+	font-size: 2rem;
+}
+
+.social-login__label {
+	width: 85%;
+	text-align: center;
+}
+
+.login-form {
+	display: flex;
+	width: 320px;
+	justify-content: flex-start;
+
+	margin-bottom: 1rem;
+}
+
+.login-column {
+	flex-grow: 1;
+	font-size: 1.3rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.login-form .login-column:first-child {
+	flex-grow: 2;
+}
+
+.login-form .login-column:last-child {
+	align-items: center;
+}
+
+.login-column input {
+	font-size: 1.3rem;
+	margin: 0.1rem;
+	/* height: 30px; */
+	padding: 10px;
+}

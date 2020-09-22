@@ -17,9 +17,23 @@ const usersRouter = require("./routes/users");
 const booksRouter = require("./routes/books");
 const session = require("express-session");
 const flash = require("express-flash");
+const MongoStore = require("connect-mongo")(session);
 
 const initializePassport = require("./passport-config");
 initializePassport(passport);
+
+// connect to DB
+mongoose.connect(process.env.DATABASE_URL, {
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
+});
+
+const db = mongoose.connection;
+
+db.on("error", (error) => console.error(error));
+db.once("open", () =>
+	console.log(`Connedcted to Mongoose: ${process.env.DATABASE_URL}`)
+);
 
 // create server
 const app = express();
@@ -42,6 +56,7 @@ app.use(
 		secret: process.env.SESSION_SECRET,
 		resave: false,
 		saveUninitialized: false,
+		store: new MongoStore({ mongooseConnection: mongoose.connection }),
 	})
 );
 
@@ -54,19 +69,6 @@ app.use(passport.session());
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/books", booksRouter);
-
-// connect to DB
-mongoose.connect(process.env.DATABASE_URL, {
-	useNewUrlParser: true,
-	useUnifiedTopology: true,
-});
-
-const db = mongoose.connection;
-
-db.on("error", (error) => console.error(error));
-db.once("open", () =>
-	console.log(`Connedcted to Mongoose: ${process.env.DATABASE_URL}`)
-);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

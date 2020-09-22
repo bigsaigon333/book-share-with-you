@@ -1,7 +1,12 @@
+@import url("https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800");
+
 @import "./partials/header.css";
+@import "./partials/socialLogin.css";
 
 :root {
 	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	--color-text-dark: #222f3e;
+	--color-text-light: #576574;
 }
 
 body {
@@ -12,11 +17,11 @@ body {
 }
 
 a {
-	color: #1c1c21;
+	color: var(--color-text-dark);
 	text-decoration: none;
 	font-weight: 600;
 	font-size: 1.2rem;
 }
 a:hover {
-	color: #717184;
+	color: var(--color-text-light);
 }

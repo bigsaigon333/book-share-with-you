@@ -1,8 +1,12 @@
 const { Strategy: naverStrategy } = require("passport-naver");
+const { Strategy: kakaoStrategy } = require("passport-kakao");
+const { Strategy: localStrategy } = require("passport-local");
+const User = require("./models/User");
 const naverCallbackURL = "http://localhost:3000/auth/naver/callback";
+const kakaoCallbackURL = "http://localhost:3000/auth/kakao/callback";
 
 function initialize(passport) {
-	const authenticateUser = (accessToken, refreshToken, profile, done) => {
+	const verifyUser = (accessToken, refreshToken, profile, done) => {
 		// ToDo : validation id
 		// process.nextTick(() => {
 		// user = {
@@ -16,9 +20,9 @@ function initialize(passport) {
 		console.log(profile);
 
 		return done(null, profile);
-		// });
 	};
 
+	// Naver Login Strategy
 	passport.use(
 		new naverStrategy(
 			{
@@ -27,9 +31,24 @@ function initialize(passport) {
 				callbackURL: naverCallbackURL,
 				svcType: 0,
 			},
-			authenticateUser
+			verifyUser
 		)
 	);
+
+	// Kakao Login Strategy
+	passport.use(
+		new kakaoStrategy(
+			{
+				clientID: process.env.KAKAO_REST_API_KEY,
+				// clientSecret: "",    // KAKAO는 clientSecret을 필요로 하지 않는다
+				callbackURL: kakaoCallbackURL,
+			},
+			verifyUser
+		)
+	);
+
+	// local Login Strategy
+	passport.use(User.createStrategy());
 
 	passport.serializeUser((user, done) => {
 		done(null, user);

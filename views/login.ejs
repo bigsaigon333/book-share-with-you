@@ -1,22 +1,33 @@
+<h2>
+  카카오와 네이버를 이용하여 <%= message %>해주세요. </h2>
+  <p>
+    당신과 함께하는 책공유는 불필요한 개인정보를 요구하지 않습니다
+  </p>
 
-<div>
-  <a href="/auth/naver">
-    <img src="/img/naver_login_button_green_full.png" alt="네이버 로그인 버튼" width="231" height="50">
-  </a>
-</div>
+
+<div class="login-container">
+
+  <form class="login-form" action="/auth/local" method="post">
+    <div class="login-column">
+      <input type="email" name="email" id="local-email" placeholder="Email">
+    
+      <input type="password" name="password" placeholder="Password" id="local-password">
+    </div>
+      
+    <button type="submit" class="login-column local-style">
+      <div>
+        Local
+      </div>
+      <div>
+        로그인
+      </div>
+      
+    </button>
+  </form>
+
+
+
+  <%- include("./partials/kakaoLogin") %>
   
-
-
-<div>
-  <a href="http://">
-    Kakao Login
-  </a>
+  <%- include("./partials/naverLogin") %>
 </div>
-  
-
-<div>
-  <a href="http://">
-    Instagram Login
-  </a>
-</div>
-
