@@ -25,3 +25,9 @@ a {
 a:hover {
 	color: var(--color-text-light);
 }
+
+@media (max-width: 450px) {
+	body {
+		padding: 20px 20px;
+	}
+}

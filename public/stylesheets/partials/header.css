@@ -18,3 +18,9 @@
 .nav > ul > li {
 	margin: 0 0.5rem;
 }
+
+@media (max-width: 900px) {
+	.nav {
+		flex-direction: column;
+	}
+}
