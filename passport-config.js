@@ -60,9 +60,26 @@ function initialize(passport) {
 	// local Login Strategy
 	passport.use(User.createStrategy());
 
-	passport.serializeUser(User.serializeUser());
+	passport.serializeUser((user, done) => {
+		if (user.email) done(null, { provider: "local", id: user.email });
+		if (user.naverId) done(null, { provider: "naver", id: user.naverId });
+		if (user.kakaoId) done(null, { provider: "kakao", id: user.kakaoId });
+	});
 
-	passport.deserializeUser(User.deserializeUser());
+	passport.deserializeUser(async (obj, done) => {
+		const { provider, id } = obj;
+		let user;
+		try {
+			if (provider === "local") user = await User.findOne({ email: id });
+			else if (provider === "naver") user = await User.findOne({ naverId: id });
+			else if (provider === "kakao") user = await User.findOne({ kakaoId: id });
+
+			return done(null, user);
+		} catch (error) {
+			console.error(error);
+			return done(error);
+		}
+	});
 }
 
 module.exports = initialize;

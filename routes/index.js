@@ -20,18 +20,20 @@ router.get("/join", checkNotAuthenticated, (req, res, next) => {
 
 router.post(
 	"/join",
-	async (req, res) => {
+	async (req, res, next) => {
 		try {
 			const { email, nickname, password, password2 } = req.body;
 
-			if (password !== password2) throw new Error("passwords don't match");
+			if (password !== password2)
+				throw new Error("패스워드가 일치하지 않습니다");
 
 			const user = await new User({ email, username: nickname });
 			await User.register(user, password);
 			// res.redirect("/");
-			next();
+			return next();
 		} catch (error) {
 			console.error(error);
+			req.flash("error", error.message);
 			res.redirect("/join");
 		}
 	},

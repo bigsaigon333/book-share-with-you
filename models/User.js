@@ -12,17 +12,14 @@ const userSchema = new mongoose.Schema({
 	email: {
 		type: String,
 		// required: true,
-		unique: true,
 		minlength: 5,
 		maxlength: 255,
 	},
 	naverId: {
 		type: Number,
-		unique: true,
 	},
 	kakaoId: {
 		type: Number,
-		unique: true,
 	},
 	owns: [
 		{
@@ -40,6 +37,6 @@ const userSchema = new mongoose.Schema({
 	],
 });
 
-userSchema.plugin(passportLocalMongoose, { usernameField: "username" });
+userSchema.plugin(passportLocalMongoose, { usernameField: "email" });
 
 module.exports = mongoose.model("User", userSchema);
