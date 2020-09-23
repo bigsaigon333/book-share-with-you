@@ -1,0 +1,31 @@
+<div class="message-container">
+  <!-- <% Object.keys(messages).forEach(key => { %>
+  <div >
+  {<%= key %>: <%= messages[key] %>}
+  </div> -->
+
+  <%})%>
+
+  <!-- info -->
+  <% if (messages.info) { %>
+    <div class="message message--info">
+      <%= messages.info %>
+   </div>
+  <% } %> 
+
+  <!-- error -->
+  <% if (messages.error) { %>
+    <div class="message message--error">
+      <%= messages.error %>
+   </div>
+  <% } %> 
+
+  <!-- success -->
+  <% if (messages.success) { %>
+    <div class="message message--success">
+      <%= messages.success %>
+    </div>
+  <% } %> 
+    
+    
+</div>

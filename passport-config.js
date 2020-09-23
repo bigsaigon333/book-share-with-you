@@ -6,20 +6,30 @@ const naverCallbackURL = process.env.DOMAIN + "/auth/naver/callback";
 const kakaoCallbackURL = process.env.DOMAIN + "/auth/kakao/callback";
 
 function initialize(passport) {
-	const verifyUser = (accessToken, refreshToken, profile, done) => {
-		// ToDo : validation id
-		// process.nextTick(() => {
-		// user = {
-		// 	name: profile.displayName,
-		// 	email: profile.emails[0].value,
-		// 	username: profile.displayName,
-		// 	provider: "naver",
-		// 	naver: profile._json,
-		// };
-		console.log("user profile: ");
+	const verifyUser = async (accessToken, refreshToken, profile, done) => {
 		console.log(profile);
 
-		return done(null, profile);
+		// build user information
+		const { provider, id, displayName: username } = profile;
+
+		const keyId = provider + "Id";
+		const user = {};
+
+		if (provider === "naver") user.naverId = id;
+		else if (provider === "kakao") user.kakaoId = id;
+
+		try {
+			const registeredUser = await User.findOne(user);
+
+			if (registeredUser) return done(null, registeredUser);
+
+			user.username = username;
+			const newUser = await User.create(user);
+			return done(null, newUser);
+		} catch (error) {
+			console.error(error);
+			return done(error);
+		}
 	};
 
 	// Naver Login Strategy
@@ -50,13 +60,9 @@ function initialize(passport) {
 	// local Login Strategy
 	passport.use(User.createStrategy());
 
-	passport.serializeUser((user, done) => {
-		done(null, user);
-	});
+	passport.serializeUser(User.serializeUser());
 
-	passport.deserializeUser((obj, done) => {
-		done(null, obj);
-	});
+	passport.deserializeUser(User.deserializeUser());
 }
 
 module.exports = initialize;

@@ -1,27 +1,42 @@
-<form action="/join" method="post">
+<div class="login-container">
 
-  <div>
-    <label for="local-email">Email</label>
-    <input type="email" name="email" id="local-email">
+
+<form action="/join" method="post" class="join-form">
+
+  <div class="join-column">
+    <label class="join-column__label" for="local-email">Email</label>
+    <input class="join-column__input" type="email" name="email" id="local-email" placeholder="Email">
+      
+  </div>
+  
+    
+    <div class="join-column">
+
+    <label class="join-column__label" for="local-nickname">Nickname</label>
+    <input class="join-column__input" type="text" name="nickname" id="local-nickname" placeholder="Nickname">
   </div>
     
-  <div>
+    <div class="join-column">
 
-    <label for="local-nickname">Nickname</label>
-    <input type="text" name="nickname" id="local-nickname">
-  </div>
-    
-  <div>
-
-    <label for="local-password">Password</label>
-    <input type="password" name="password" id="local-password">
+    <label class="join-column__label" for="local-password">비밀번호</label>
+    <input class="join-column__input" type="password" name="password" id="local-password" placeholder="password">
   </div>
 
-  <div>
-    <label for="local-password2">Password-check</label>
-    <input type="password" name="password2" id="local-password2">
+    <div class="join-column">
+
+    <label class="join-column__label" for="local-password2">비밀번호 한번더</label>
+    <input class="join-column__input" type="password" name="password2" id="local-password2" placeholder="type same password again">
   </div>
 
-  <input type="submit" value="가입하기">
-    
+  <input class="join__submit local-style" type="submit" value="가입하기">
+  <p>※ 로그인 시에 Email과 Password를 사용합니다 </p>
+
+
+  
 </form>
+
+<%- include("./partials/kakaoLogin", {label: "카카오로 가입"}) %>
+<%- include("./partials/naverLogin", {label: "네이버 아이디로 가입"}) %>
+
+
+</div>

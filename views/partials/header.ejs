@@ -8,12 +8,22 @@
 			<li>
 				<a href="/books/search">책 등록하기</a>
 			</li>
+
+			<% if (user) {%>
+				<li>
+					<a href="dashboard">Dashboard</a>
+				</li>
+			<li>
+				<a href="/logout">Logout</a>
+			</li>
+		<% } else { %> 
 			<li>
 				<a href="/join">Join</a>
 			</li>
 			<li>
 				<a href="/login">Login</a>
 			</li>
+		<% } %> 
 		</ul>
 	</nav>
 </header>

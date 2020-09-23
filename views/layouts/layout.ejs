@@ -3,12 +3,17 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+		<!-- <link rel="stylesheet" href="https://unpkg.com/tachyons@4/css/tachyons.min.css"> -->
 		<link rel="stylesheet" href="/stylesheets/styles.css">
 		<script defer src="https://kit.fontawesome.com/f70858e33e.js" crossorigin="anonymous"></script>
 		<title>Document</title>
 	</head>
 	<body>
 		<%- include('../partials/header') %>
+
+		<% if (messages) { %>
+		<%- include('../partials/flashMessages') %>
+		<% } %> 
 
 		<%- body %>
 		<%- include('../partials/footer') %>

@@ -1,0 +1,45 @@
+.message-container {
+	display: flex;
+	justify-content: center;
+}
+
+.message {
+	position: absolute;
+	top: -100px;
+	width: 100%;
+	box-sizing: content-box;
+	text-align: center;
+	font-family: "Do Hyeon", sans-serif;
+
+	background-color: #1dd1a1;
+	color: white;
+	font-size: 3rem;
+	/* font-weight: 700; */
+	padding: 10px;
+	animation: flashMessageFadeInOut 1.5s linear forwards;
+}
+
+.message--info {
+	background-color: #feca57;
+	color: white;
+}
+
+.message--error {
+	background-color: #ee5253;
+}
+
+.message--success {
+	background-color: #10ac84;
+}
+
+@keyframes flashMessageFadeInOut {
+	0% {
+		transform: translateY(0px);
+	}
+	10% {
+		transform: translateY(100px);
+	}
+	90% {
+		transform: translateY(100px);
+	}
+}

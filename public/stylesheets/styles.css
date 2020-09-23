@@ -1,7 +1,12 @@
 @import url("https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800");
+@import url("https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap");
 
 @import "./partials/header.css";
 @import "./partials/socialLogin.css";
+@import "./partials/loginForm.css";
+@import "./partials/flashMessages.css";
+
+@import "./join.css";
 
 :root {
 	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
