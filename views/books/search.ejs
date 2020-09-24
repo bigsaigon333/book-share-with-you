@@ -13,8 +13,9 @@
 		<%- include("_book_info", {book}) %> 
 
 	
-		<a href="./new/<%=book.isbn%>">등록하기</a>
-
+		<% if (locals.user) { %> 
+			<a href="./new/<%=book.isbn%>">등록하기</a>
+		<% } %> 
 	</div>
 	
 	

@@ -1,17 +1,27 @@
 
 <h2>책 등록하기</h2>
-<form action="/books/<%= isbn %>" method="POST">
+<form action="/books/new/<%= book.isbn %>" method="POST">
   <%- include("_book_info", {book}) %> 
-
-
-  <label for="quantity">수량</label>
-  <input type="number" name="quantity" id="quantity" min="1" value="1" required="true">
   
-  <p>교환 가능 장소</p>
-  <%- include("_region_checkbox") %> 
+  <div>
+
+    <label for="share-place">
+      교환 가능 장소
+    </label>
+    <input type="text" name="sharePlace" id="share-place" placeholder="ex) 홍대, 낙성대, 신용산">
+  </div>
+    
+  <div>
+
+    <label for="introducing_comment">
+      간단한 책 소개글을 남겨주세요^^
+    </label>
+    <input type="text" name="introducingComment" id="introducing-comment" placeholder="지친 밤 자기 전에 잠깐 읽기 좋은 글들..">
+  </div>
+    
+    
 
 
 
-
-<input type="submit" value="제출">
+<input type="submit" value="등록">
 </form>

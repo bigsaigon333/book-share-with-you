@@ -13,9 +13,8 @@
 
 To Do List
 
-- flash 적용
-- authorized User에 대한 Personalization
-- social login, local login 모두 통합하여 관리하게끔 verifyUser 수정
-- Serialization, Deserialization 수정
-- password === password2 체크 db validation 으로 변경하기
--
+[x] flash 적용
+[x] authorized User에 대한 Personalization
+[x] social login, local login 모두 통합하여 관리하게끔 verifyUser 수정
+[x] Serialization, Deserialization 수정
+[ ] password === password2 체크 db validation 으로 변경하기

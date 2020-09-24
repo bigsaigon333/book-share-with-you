@@ -23,16 +23,14 @@ const userSchema = new mongoose.Schema({
 	},
 	owns: [
 		{
-			book: {
-				type: mongoose.SchemaTypes.ObjectId,
-			},
+			type: mongoose.SchemaTypes.ObjectId,
+			ref: "RegisteredBook",
 		},
 	],
 	lends: [
 		{
-			book: {
-				type: mongoose.SchemaTypes.ObjectId,
-			},
+			type: mongoose.SchemaTypes.ObjectId,
+			ref: "RegisteredBook",
 		},
 	],
 });
